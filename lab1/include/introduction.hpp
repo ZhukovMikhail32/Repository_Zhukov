@@ -13,11 +13,11 @@
 class introduction
 {
 public:
-    std::string_view name() const
+    std::string_view name() const 
     {
         return ...
     }
-
+    //Второй комментарий
     std::string_view surename() const
     {
         return ...
