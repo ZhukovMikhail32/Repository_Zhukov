@@ -1,10 +1,13 @@
-return() # Remove this line
-add_library(iomanip INTERFACE)
-target_include_directories(iomanip INTERFACE include)
+cmake_minimum_required(VERSION 3.10)
+project(Iomanip)
 
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/gprotect.cpp "#include <iomanip.hpp>\n")
+set(CMAKE_CXX_STANDART 17)
+set(CMAKE_CXX_STANDART_REQUIRED True)
 
-file(GLOB TESTS tests/*.cpp)
-add_executable(tests_iomanip ${TESTS} ${CMAKE_CURRENT_BINARY_DIR}/gprotect.cpp)
-target_link_libraries(tests_iomanip iomanip Catch2::Catch2WithMain)
-catch_discover_tests(tests_iomanip)
+set(tests_sources ./tests/iomanip.cpp ./include/iomanip.hpp)
+
+include_directories(include)
+add_subdirectory(Catch2)
+
+add_executable(tests ${tests_sources})
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
